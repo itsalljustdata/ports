@@ -1,14 +1,14 @@
 APP:
   DEBUG: true
   FEEDBACK_INTERVAL: 500
-  NUM_THREADS: 15
+  NUM_THREADS: 50
 PROTOCOLS:
   - TCP
-  # - UDP
+  - UDP
 PORTS:
   TESTING_IP: portquiz.net
   TIMEOUT_S: 3
 FILES:
   INPUT: ports.json
-  OUTPUT: ports.tested.json
-  OPEN: ports.open.%PROTO%.json
+  OUTPUT: ../ports.tested.json
+  OPEN: ../ports.open.%PROTO%.json

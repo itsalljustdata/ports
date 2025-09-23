@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 from dataclasses import dataclass
 import socket
@@ -7,29 +8,11 @@ from multiprocessing.pool import ThreadPool
 import datetime as dt
 from configFileHelper import Config
 
-try:
-    from icecream import ic
-
-    def ic_set(debug):
-        if debug:
-            ic.enable()
-        else:
-            ic.disable()
-
-
-# Graceful fallback if IceCream isn't installed.
-except (ImportError, FileNotFoundError):
-    doDebug: bool = False
-
-    def ic(thing):  # just print to STDOUT
-        if doDebug:
-            print(thing)
-
-    def ic_set(debug):
-        global doDebug
-        doDebug = debug
-        ic("* icecream module not imported successfully, using STDOUT")
-
+def ic_set(debug):
+    if debug:
+        ic.enable()
+    else:
+        ic.disable()
 
 THIS_PATH = Path(__file__).parent.resolve()
 
@@ -37,7 +20,7 @@ THIS_PATH = Path(__file__).parent.resolve()
 def nowString():
     return f"{dt.datetime.now().strftime('%Y.%m.%d %T')} |> "
 
-
+ 
 try:
     ic.configureOutput(prefix=nowString)
 except AttributeError:
